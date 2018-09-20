@@ -12,7 +12,11 @@ before_build:
   - ps: $env:TEST_VERSION=$(gitversion /showvariable MajorMinorPatch)
 build_script:
   - ps: dotnet restore
-  - ps: cd src/dotnet-setversion; dotnet setversion $env:VERSION; dotnet pack -c Release -o release/; cd ../..
+  - ps: |
+        
+        cd src/dotnet-setversion
+        dotnet setversion $env:VERSION
+        dotnet pack -c Release -o release/; cd ../..
 test_script:
   - ps: cd src/dotnet-setversion; dotnet setversion $env:TEST_VERSION; cd ../..
   - ps: test/e2e.ps1

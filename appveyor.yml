@@ -15,7 +15,7 @@ build_script:
   - ps: |
         
         cd src/dotnet-setversion
-        dotnet setversion $env:VERSION
+        dotnet setversion 1.2.3.4
         dotnet pack -c Release -o release/
 test_script:
   - ps: cd src/dotnet-setversion; dotnet setversion $env:TEST_VERSION; cd ../..
